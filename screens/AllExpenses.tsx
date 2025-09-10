@@ -1,3 +1,9 @@
-export default function AllExpenses(){
-    
+import { View, Text } from "react-native";
+
+export default function AllExpenses() {
+    return (
+        <View>
+            <Text>Expenses</Text>
+        </View>
+    );
 }
