@@ -1,9 +1,10 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
+import ExpensesOutput from "../components/ExpensesOutput";
 
 export default function ManageExpense() {
     return (
         <View>
-            <Text>Expenses</Text>
+            <ExpensesOutput />
         </View>
     );
 }
