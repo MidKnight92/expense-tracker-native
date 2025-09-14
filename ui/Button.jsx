@@ -6,7 +6,7 @@ export default function Button({ children, onPress, mode }) {
         <View>
             <Pressable onPress={onPress}>
                 <View style={[styles.button, mode === 'flat' && styles.flatButton]}>
-                    <Text style={[styles.button, mode === 'flat' && styles.flatText]}>{children}</Text>
+                    <Text style={[styles.buttonText, mode === 'flat' && styles.flatText]}>{children}</Text>
                 </View>
             </Pressable>
         </View>
