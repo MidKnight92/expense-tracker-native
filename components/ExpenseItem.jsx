@@ -1,16 +1,24 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../constants/styles";
+import { getFormattedDate } from "../util/date";
+import { useNavigation } from "@react-navigation/native";
 
-export default function ExpenseItem({ description, date, amount }) {
+export default function ExpenseItem({id, description, date, amount }) {
+    const navigator = useNavigation();
+    const expensePressHandler = () => {
+        navigator.navigate('ManageExpense', {
+            expenseId: id
+        });
+     }
     return (
-        <Pressable>
+        <Pressable style={({ pressed }) => pressed && styles.pressed} onPress={expensePressHandler}>
             <View style={styles.expenseItem}>
                 <View>
                     <Text style={[styles.textBase, styles.description]}>{description ?? 'description'}</Text>
-                    <Text style={styles.textBase}>{date.toString() ?? 'date'}</Text>
+                    <Text style={styles.textBase}>{getFormattedDate(date) ?? 'date'}</Text>
                 </View>
                 <View style={styles.amountContainer}>
-                    <Text style={styles.amount}>{amount ?? 'amount'}</Text>
+                    <Text style={styles.amount}>{amount.toFixed(2) ?? 'amount'}</Text>
                 </View>
             </View>
         </Pressable>
@@ -45,10 +53,14 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4
+        borderRadius: 4,
+        minWidth: 80
     },
     amount: {
         color: GlobalStyles.colors.primary500,
         fontWeight: 'bold'
+    },
+    pressed: {
+        opacity: 0.75
     }
 });
